@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order confirmed — Etsy</title>
+<style>
+  :root{
+    --bg:#f7f4ee;
+    --card:#ffffff;
+    --ink:#26232b;
+    --ink-soft:#5c5866;
+    --line:#e4e0d6;
+    --orange:#f1641e;
+    --green:#1f7a4d;
+    --green-bg:#e9f5ee;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1c1a17; --card:#26231f; --ink:#f1ede4; --ink-soft:#b2ab9d; --line:#3a362f; --green-bg:#173226;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1c1a17; --card:#26231f; --ink:#f1ede4; --ink-soft:#b2ab9d; --line:#3a362f; --green-bg:#173226;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Avenir Next","Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  header{
+    width:100%;
+    padding:20px 16px 16px;
+    display:flex;
+    justify-content:center;
+    border-bottom:1px solid var(--line);
+  }
+  .brandbar{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .brand{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:30px;
+    color:var(--orange);
+    font-weight:700;
+  }
+  .secure{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+  main{
+    width:100%;
+    max-width:640px;
+    padding:32px 16px 64px;
+  }
+  .progress{
+    display:flex;
+    gap:6px;
+    margin-bottom:28px;
+  }
+  .progress span{
+    height:4px;
+    flex:1;
+    border-radius:2px;
+    background:var(--ink);
+  }
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    border:1px solid var(--line);
+    padding:44px 40px 36px;
+  }
+  .check-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom:20px;
+  }
+  .check-circle{
+    width:64px; height:64px;
+    border-radius:50%;
+    background:var(--green-bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  h1{
+    text-align:center;
+    font-size:26px;
+    line-height:1.3;
+    margin:0 0 8px;
+  }
+  .sub{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:15px;
+    line-height:1.5;
+    margin:0 auto 32px;
+    max-width:38ch;
+  }
+  .order-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:28px;
+  }
+  .order-meta div span{display:block;}
+  .order-meta .label{font-size:12px;color:var(--ink-soft);margin-bottom:3px;}
+  .order-meta .value{font-size:15px;font-weight:600;}
+  .order-meta .num{text-align:right;}
+
+  .section-title{
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item:last-child{border-bottom:none;}
+  .thumb{
+    width:64px; height:64px;
+    border-radius:8px;
+    flex-shrink:0;
+    background:linear-gradient(135deg,#e8c9a8,#d99a6c);
+  }
+  .item-info{flex:1; min-width:0;}
+  .item-name{font-size:15px; font-weight:600; margin:0 0 4px;}
+  .item-shop{font-size:13px; color:var(--ink-soft); margin:0;}
+  .item-price{font-size:15px; font-weight:600; white-space:nowrap;}
+
+  .totals{margin-top:8px;}
+  .row{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    padding:6px 0;
+    color:var(--ink-soft);
+  }
+  .row.total{
+    color:var(--ink);
+    font-weight:700;
+    font-size:16px;
+    border-top:1px solid var(--line);
+    margin-top:6px;
+    padding-top:14px;
+  }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-top:28px;
+  }
+  @media (max-width:520px){
+    .two-col{grid-template-columns:1fr;}
+    .card{padding:32px 22px 28px;}
+  }
+  .block p{margin:0; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+  .block p.strong{color:var(--ink); font-weight:600; margin-bottom:4px;}
+
+  .actions{
+    margin-top:36px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .steps-below{
+    display:flex;
+    gap:6px;
+    margin-top:12px;
+  }
+  .steps-below span{
+    flex:1;
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .steps-below span.done{
+    color:var(--ink);
+    font-weight:700;
+  }
+  button{
+    font-family:inherit;
+    font-size:15px;
+    font-weight:700;
+    border-radius:28px;
+    padding:15px 20px;
+    cursor:pointer;
+    border:none;
+  }
+  .primary{
+    background:var(--ink);
+    color:var(--card);
+  }
+  .secondary{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brandbar">
+    <span class="brand">Etsy</span>
+    <span class="secure">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      Secure checkout
+    </span>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="check-wrap">
+      <div class="check-circle">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+    </div>
+    <h1>Your order is confirmed</h1>
+    <p class="sub">A receipt has been sent to your email. We'll let you know as soon as it ships.</p>
+
+    <div class="order-meta">
+      <div>
+        <span class="label">Order date</span>
+        <span class="value">Sep 25, 2026</span>
+      </div>
+      <div class="num">
+        <span class="label">Order number</span>
+        <span class="value">#3021-7745901</span>
+      </div>
+    </div>
+
+    <p class="section-title">Items</p>
+
+    <div class="item">
+      <div class="thumb"></div>
+      <div class="item-info">
+        <p class="item-name">Hand-thrown ceramic mug, speckled glaze</p>
+        <p class="item-shop">ClayAndCoStudio</p>
+      </div>
+      <div class="item-price">₹1,450</div>
+    </div>
+
+    <div class="item">
+      <div class="thumb" style="background:linear-gradient(135deg,#c8d9c3,#8fae86);"></div>
+      <div class="item-info">
+        <p class="item-name">Linen table runner, natural undyed</p>
+        <p class="item-shop">WovenNestHome</p>
+      </div>
+      <div class="item-price">₹2,100</div>
+    </div>
+
+    <div class="totals">
+      <div class="row"><span>Subtotal</span><span>₹3,550</span></div>
+      <div class="row"><span>Shipping</span><span>₹180</span></div>
+      <div class="row"><span>Tax</span><span>₹213</span></div>
+      <div class="row total"><span>Total</span><span>₹3,943</span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="block">
+        <p class="strong">Shipping to</p>
+        <p>Kothrud, wwww,<br>Pune 411038, Maharashtra<br>123-456-7899</p>
+      </div>
+      <div class="block">
+        <p class="strong">Estimated delivery</p>
+        <p>Oct 3 – Oct 8, 2026<br>Standard shipping</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary">Track your order</button>
+      <button class="secondary">Continue shopping</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+(function(){
+  var o=null;try{o=JSON.parse(sessionStorage.getItem('lastOrder')||'null');}catch(e){}
+  var brand=document.querySelector('.brand');
+  if(brand){var a=document.createElement('a');a.href='index.html';a.style.cssText='text-decoration:none;color:inherit';brand.parentNode.insertBefore(a,brand);a.appendChild(brand);}
+  if(!o||!o.items||!o.items.length)return;
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function money(n){return '\u20B9'+n.toLocaleString('en-IN');}
+  function fmt(d){return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+  var placed=new Date(o.ts);
+  var total=o.items.reduce(function(s,i){return s+i.p;},0);
+  var ad=o.address||{};
+  var addr=esc(ad.street)+(ad.apt?', '+esc(ad.apt):'')+',<br>'+esc(ad.city)+' '+esc(ad.pin)+', '+esc(ad.state)+'<br>'+esc(ad.phone);
+  var itemsHtml=o.items.map(function(i){
+    var bg=i.img?'background:url('+esc(i.img)+') center/cover;':'background:'+esc(i.c)+';';
+    return '<div class="item"><div class="thumb" style="'+bg+'"></div><div class="item-info"><p class="item-name">'+esc(i.t)+'</p><p class="item-shop">'+esc(i.s)+'</p></div><div class="item-price">'+money(i.p)+'</div></div>';
+  }).join('');
+  document.querySelectorAll('.item').forEach(function(n,k){if(k)n.remove();});
+  var first=document.querySelector('.item');first.outerHTML=itemsHtml;
+  var blocks=document.querySelectorAll('.two-col')[0].querySelectorAll('.block p:not(.strong)');
+  blocks[0].innerHTML=addr;
+  window.__order={o:o,placed:placed,total:total,money:money,fmt:fmt};
+})();
+
+(function(){
+  var W=window.__order;
+  var v=document.querySelectorAll('.order-meta .value');
+  if(W){
+    v[0].textContent=W.fmt(W.placed);v[1].textContent=W.o.no;
+    document.querySelector('.totals').innerHTML='<div class="row"><span>Subtotal</span><span>'+W.money(W.total)+'</span></div><div class="row"><span>Shipping</span><span>\u20B90</span></div><div class="row"><span>Tax</span><span>Included (GST)</span></div><div class="row total"><span>Total</span><span>'+W.money(W.total)+'</span></div>';
+    var d1=new Date(W.placed.getTime()+5*864e5),d2=new Date(W.placed.getTime()+10*864e5);
+    var bl=document.querySelectorAll('.two-col')[0].querySelectorAll('.block p:not(.strong)');
+    bl[1].innerHTML=W.fmt(d1).replace(/, \d+$/,'')+' \u2013 '+W.fmt(d2)+'<br>Standard shipping';
+  }
+  document.querySelector('.primary').onclick=function(){location.href='track-order.html';};
+  document.querySelector('.secondary').onclick=function(){location.href='index.html';};
+})();
+</script>
+</body>
+</html>
